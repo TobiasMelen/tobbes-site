@@ -1,0 +1,14 @@
+{
+  "version": "0.1.0",
+  "name": "tobbes-site",
+  "author": "Tobias Melén",
+  "repository": "https://github.com/tobiasmelen/tobbes-site",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^2.3.8"
+  }
+}
