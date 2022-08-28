@@ -3,6 +3,7 @@ import { GetServerSideProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { callVercelApi } from "../utils";
+import { GlobalStyle } from "./_app";
 
 type Props = {
   vercelProjects: { name: string }[];

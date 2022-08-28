@@ -1,14 +1,12 @@
-import { setup } from "goober";
-import { createGlobalStyles } from "goober/global";
 import { AppProps } from "next/app";
-import React from "react";
+import "../index.css"
 
-setup(React.createElement);
+// setup(createElement);
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-      <GlobalStyle />
+      {/* <GlobalStyle /> */}
       <Component {...pageProps} />
     </>
   );
@@ -16,34 +14,34 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 export default MyApp;
 
-const GlobalStyle = createGlobalStyles`
-  @font-face {
-    font-family: "Bebas Neue";
-    src: url("/BebasNeue-Regular.woff2");
-    font-style: normal;
-  }
-  html,
-  body {
-    padding: 0;
-    margin: 0;
-    font-family: "Bebas Neue", system-ui, sans-serif;
-  }
+// const GlobalStyle = createGlobalStyles`
+//   @font-face {
+//     font-family: "Bebas Neue";
+//     src: url("/BebasNeue-Regular.woff2");
+//     font-style: normal;
+//   }
+//   html,
+//   body {
+//     padding: 0;
+//     margin: 0;
+//     font-family: "Bebas Neue", system-ui, sans-serif;
+//   }
 
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
+//   a {
+//     color: inherit;
+//     text-decoration: none;
+//   }
 
-  * {
-    box-sizing: border-box;
-  }
+//   * {
+//     box-sizing: border-box;
+//   }
 
-  @media (prefers-color-scheme: dark) {
-    html {
-      color-scheme: dark;
-    }
-    body {
-      color: white;
-      background: black;
-    }
-  }`;
+//   @media (prefers-color-scheme: dark) {
+//     html {
+//       color-scheme: dark;
+//     }
+//     body {
+//       color: white;
+//       background: black;
+//     }
+//   }`;
