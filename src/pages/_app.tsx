@@ -1,9 +1,10 @@
-import { glob as createGlobalStyle } from "goober";
+import { createGlobalStyles } from "goober/global";
 import { AppProps } from "next/app";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
+      <GlobalStyle />
       <Component {...pageProps} />
     </>
   );
@@ -11,7 +12,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 export default MyApp;
 
-createGlobalStyle`
+const GlobalStyle = createGlobalStyles`
   @font-face {
     font-family: "Bebas Neue";
     src: url("/BebasNeue-Regular.woff2");
