@@ -16,7 +16,7 @@ export const callVercelApi = (
   fetch(`https://api.vercel.com/${path}`, {
     ...options,
     headers: {
-      Authorization: `Bearer ${process.env.VERCEL_API_TOKEN}`,
+      Authorization: `Bearer ${process.env.VERCELAPI_TOKEN}`,
       ...options?.headers,
     },
   })
