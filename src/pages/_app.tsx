@@ -1,5 +1,9 @@
+import { setup } from "goober";
 import { createGlobalStyles } from "goober/global";
 import { AppProps } from "next/app";
+import React from "react";
+
+setup(React.createElement);
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
