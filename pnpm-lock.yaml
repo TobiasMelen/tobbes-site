@@ -4,6 +4,7 @@ specifiers:
   '@types/node': ^18.7.13
   '@types/react': ^18.0.17
   '@types/react-dom': ^18.0.6
+  csstype: ^3.1.0
   eslint: 8.23.0
   eslint-config-next: 12.2.5
   goober: ^2.1.11
@@ -13,6 +14,7 @@ specifiers:
   typescript: ^4.8.2
 
 dependencies:
+  goober: 2.1.11_csstype@3.1.0
   next: 12.2.5_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -21,9 +23,9 @@ devDependencies:
   '@types/node': 18.7.13
   '@types/react': 18.0.17
   '@types/react-dom': 18.0.6
+  csstype: 3.1.0
   eslint: 8.23.0
   eslint-config-next: 12.2.5_yqf6kl63nyoq5megxukfnom5rm
-  goober: 2.1.11
   typescript: 4.8.2
 
 packages:
@@ -503,7 +505,6 @@ packages:
 
   /csstype/3.1.0:
     resolution: {integrity: sha512-uX1KG+x9h5hIJsaKR9xHUeUraxf8IODOwq9JLNPq6BwB04a/xgpq3rcx47l5BZu5zBPlgD342tdke3Hom/nJRA==}
-    dev: true
 
   /damerau-levenshtein/1.0.8:
     resolution: {integrity: sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA==}
@@ -1065,11 +1066,13 @@ packages:
       slash: 3.0.0
     dev: true
 
-  /goober/2.1.11:
+  /goober/2.1.11_csstype@3.1.0:
     resolution: {integrity: sha512-5SS2lmxbhqH0u9ABEWq7WPU69a4i2pYcHeCxqaNq6Cw3mnrF0ghWNM4tEGid4dKy8XNIAUbuThuozDHHKJVh3A==}
     peerDependencies:
       csstype: ^3.0.10
-    dev: true
+    dependencies:
+      csstype: 3.1.0
+    dev: false
 
   /grapheme-splitter/1.0.4:
     resolution: {integrity: sha512-bzh50DW9kTPM00T8y4o8vQg89Di9oLJVLW/KaOGIXJWP/iqCN6WKYkbNOF04vFLJhwcpYUh9ydh/+5vpOqV4YQ==}
