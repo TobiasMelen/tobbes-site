@@ -8,7 +8,13 @@ type Props = {
   vercelProjects: { name: string }[];
 };
 
-export const getServerSideProps: GetServerSideProps<Props> = async () => {
+export const getServerSideProps: GetServerSideProps<Props> = async ({
+  res,
+}) => {
+  res.setHeader(
+    "Cache-Control",
+    "public, s-maxage=500, stale-while-revalidate=1000"
+  );
   const { projects } = await callVercelApi("v9/projects");
   return {
     props: {
