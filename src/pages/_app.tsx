@@ -1,7 +1,9 @@
+import { setup } from "goober";
 import { AppProps } from "next/app";
-import "../index.css"
+import { createElement } from "react";
+import "../index.css";
 
-// setup(createElement);
+setup(createElement);
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

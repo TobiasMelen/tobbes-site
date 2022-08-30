@@ -1,7 +1,8 @@
-import { css } from "goober";
+import { css, styled } from "goober";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
+import { useRef } from "react";
 import { callVercelApi } from "../utils";
 
 type Props = {
@@ -23,40 +24,74 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({
   };
 };
 
+const InverseLink = styled("a")`
+  position: relative;
+  &::before {
+    content: " ";
+    backdrop-filter: invert(100%);
+    position: absolute;
+    width: 100%;
+    height: 98%;
+    top: -5%;
+    transform: scaleX(0%);
+  }
+  &:hover::before {
+    transform: scaleX(100%);
+  }
+`;
+
 export default function Home(props: Props) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
   return (
     <article
       className={css`
         margin: 0 0.6vw;
-        max-width: 86.5vw;
-        /* Du kan vara mobile first */
-        @media (max-width: 500px) {
-          margin: 0.5em 1em;
-          max-width: 100%;
-        }
       `}
     >
       <Head>
-        <title>Tobbes site</title>
+        <title>tobbes.site</title>
         <meta name="description" content="The site of tobbe" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <h1
         className={css`
-          font-size: 23vw;
-          line-height: 0.87;
+          font-size: 26vw;
+          line-height: 0.7;
           margin: 0;
-          margin-bottom: 0.1em;
-          text-decoration: underline;
+          /* margin-bottom: 0.1em; */
+          white-space: nowrap;
+          border-bottom: 0.15em solid;
+          margin-top: 0.09em;
         `}
       >
-        Tobbes site
+        Tobbes.
+        <span
+          className={css`
+            color: white;
+            position: relative;
+          `}
+        >
+          <span
+            className={css`
+              font-family: Arial, Helvetica, sans-serif;
+              position: absolute;
+              left: 0;
+              top: 0;
+              mix-blend-mode: multiply;
+              width: 101%;
+              height: 24.5vw;
+              background: linear-gradient(deeppink, crimson, orange);
+            `}
+          ></span>
+          site
+        </span>
       </h1>
       <section
         className={css`
           display: flex;
           align-items: center;
           justify-content: space-between;
+          margin-bottom: 7vw;
         `}
       >
         <div>
@@ -88,37 +123,45 @@ export default function Home(props: Props) {
         >
           {props.vercelProjects.map((project) => (
             <li key={project.name}>
-              <Link href={`/projects/${encodeURIComponent(project.name)}`}>
-                <a
+              <Link
+                href={`/projects/${encodeURIComponent(project.name)}`}
+                passHref
+              >
+                <InverseLink
                   className={css`
                     display: inline-block;
                     font-size: 3vw;
                     line-height: 0.87;
-                    position: relative;
-                    &::before {
-                      content: " ";
-                      backdrop-filter: invert(100%);
-                      position: absolute;
-                      width: 100%;
-                      height: 98%;
-                      top: -5%;
-                      transform: scaleX(0%);
-                    }
-                    &:hover::before {
-                      transform: scaleX(100%);
-                    }
-                    @media (max-width: 500px) {
-                      font-size: 4vw;
-                      padding: 0.3em 0;
-                    }
                   `}
                 >
                   {project.name}
-                </a>
+                </InverseLink>
               </Link>
             </li>
           ))}
         </ul>
+      </section>
+      <section
+        className={css`
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          padding-bottom: 7vw;
+        `}
+      >
+        <div>
+          <InverseLink href="https://github.com/tobiasmelen">
+            <h2
+              className={css`
+                margin: 0;
+                font-size: 12.5vw;
+                line-height: 0.87;
+              `}
+            >
+              Github
+            </h2>
+          </InverseLink>
+        </div>
       </section>
     </article>
   );
