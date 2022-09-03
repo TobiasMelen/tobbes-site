@@ -2,7 +2,7 @@ import { css, styled } from "goober";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { callVercelApi } from "../utils";
 
 type Props = {
@@ -34,14 +34,38 @@ const InverseLink = styled("a")`
     height: 98%;
     top: -5%;
     transform: scaleX(0%);
+    pointer-events: none;
   }
   &:hover::before {
     transform: scaleX(100%);
   }
 `;
 
+const getHslColor = (angle: number) => `hsl(${angle}, 100%, 50%)`;
+
+const getHalfHslGradient = (angle: number) =>
+  `linear-gradient(${angle}deg, ${new Array(20)
+    .fill(null)
+    .map((_, index) => getHslColor(Math.abs(angle - index * 2.5)))
+    .join(",")}`;
+
 export default function Home(props: Props) {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const textBackground = useRef<HTMLElement>(null);
+  useEffect(() => {
+    let hslAngle = Math.random() * 360;
+    let stopped = false;
+    const animateTextBackground = () => {
+      const el = textBackground.current!;
+      el.style.color = "transparent";
+      el.style.background = getHalfHslGradient(hslAngle);
+      hslAngle = hslAngle + 0.5;
+      !stopped && requestAnimationFrame(animateTextBackground);
+    };
+    requestAnimationFrame(animateTextBackground);
+    return () => {
+      stopped = true;
+    };
+  }, []);
   return (
     <article
       className={css`
@@ -55,7 +79,7 @@ export default function Home(props: Props) {
       </Head>
       <h1
         className={css`
-          font-size: 26vw;
+          font-size: 28.45vw;
           line-height: 0.7;
           margin: 0;
           /* margin-bottom: 0.1em; */
@@ -66,23 +90,12 @@ export default function Home(props: Props) {
       >
         Tobbes.
         <span
+          ref={textBackground}
           className={css`
-            color: white;
-            position: relative;
+            background-clip: text;
+            -webkit-background-clip: text !important;
           `}
         >
-          <span
-            className={css`
-              font-family: Arial, Helvetica, sans-serif;
-              position: absolute;
-              left: 0;
-              top: 0;
-              mix-blend-mode: multiply;
-              width: 101%;
-              height: 24.5vw;
-              background: linear-gradient(deeppink, crimson, orange);
-            `}
-          ></span>
           site
         </span>
       </h1>
@@ -91,14 +104,14 @@ export default function Home(props: Props) {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          margin-bottom: 7vw;
+          margin: 3vw 0;
         `}
       >
         <div>
           <h2
             className={css`
               margin: 0;
-              font-size: 12.5vw;
+              font-size: 17vw;
               line-height: 0.71;
             `}
           >
@@ -146,21 +159,28 @@ export default function Home(props: Props) {
           display: flex;
           align-items: center;
           justify-content: flex-start;
-          padding-bottom: 7vw;
+          overflow: hidden;
         `}
       >
         <div>
-          <InverseLink href="https://github.com/tobiasmelen">
-            <h2
-              className={css`
-                margin: 0;
-                font-size: 12.5vw;
-                line-height: 0.87;
-              `}
+          <h2
+            className={css`
+              /* overflow-y: hidden; */
+              margin: 0;
+              font-size: 50.8vw;
+              margin-left: -0.03em;
+              line-height: .87;
+              vertical-align: middle;
+              overflow: hidden;
+              height: .76em;
+            `}
+          >
+            <InverseLink
+              href="https://github.com/tobiasmelen"
             >
               Github
-            </h2>
-          </InverseLink>
+            </InverseLink>
+          </h2>
         </div>
       </section>
     </article>
